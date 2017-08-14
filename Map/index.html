@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title></title>
+
+    <link rel="stylesheet" href=""/> 
+    <!-- 引入 ECharts 文件 -->
+    <script src="echarts.js"></script>
+    <script src="guizhou.js"></script>
+
+    <script src=" http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js"></script>
+   
+</head>
+<body>
+	<div id="main" style="width: 600px;height:400px;"></div>
+
+    df sdf 
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        function randomData() {
+    return Math.round(Math.random()*1000);
+}
+
+/**
+var option = {
+    title: {
+        text: 'iphone销量',
+        subtext: '纯属虚构',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data:['iphone3','iphone4','iphone5']
+    },
+    visualMap: {
+        min: 0,
+        max: 2500,
+        left: 'left',
+        top: 'bottom',
+        text: ['高','低'],           // 文本，默认为数值文本
+        calculable: true
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    series: [  
+        {
+            name: 'iphone5',
+            type: 'map',
+            mapType: 'china',
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:[ 
+                
+                {name: '澳门',value: randomData() }
+            ]
+        }
+    ]
+};**/
+
+        // 使用刚指定的配置项和数据显示图表。
+        //myChart.setOption(option);
+       //var chart = echarts.init(document.getElementById('main'));
+myChart.setOption({
+    series: [{
+        type: 'map',
+        map: '贵州'
+    }]
+});
+    </script>
+ 	
+</body>
+</html>
