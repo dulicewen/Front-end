@@ -11,11 +11,53 @@
         <div id="main"></div>
        <script src="lib/echarts.js"></script>
         <script src="map/guizhou.js"></script>
-        <script src="../dist/echarts-gl.js"></script>
+        <script src="../dist/echarts-gl.min.js"></script>
         <script src="lib/jquery.min.js"></script>
         <script>
-            var chart = echarts.init(document.getElementById('main'));
 
+            var geoCoordMap = {
+    "贵阳市":[106.6992,26.7682],
+    "安顺市":[105.9082,25.9882],
+    "六盘水市":[104.7546,26.0925],
+    "黔西南布依族苗族自治州":[105.5347,25.3949],
+    "铜仁地区":[108.6218,28.0096],
+    "黔南布依族苗族自治州":[107.2485,25.8398],
+    "毕节地区":[105.1611,27.0648],
+    "黔东南苗族侗族自治州":[108.4241,26.4166],
+    "遵义市":[106.908,28.1744]
+
+};
+
+var City_data=[
+    //{name: "贵阳市",value:50},
+    {name: "贵阳市"},
+    {name: "安顺市"},
+    {name: "六盘水市"},
+    {name: "遵义市"},
+    {name: "毕节地区"},
+    {name:'黔西南布依族苗族自治州'},
+    {name:'黔南布依族苗族自治州'},
+    {name:'铜仁地区'},
+    {name:'黔东南苗族侗族自治州'}
+] 
+var convertData = function (data) {
+       
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+            res.push({
+                name: data[i].name,
+                //value: geoCoord.concat(data[i].value)
+                 value:data[i].value?geoCoord.concat(data[i].value):geoCoord.concat(randomData())
+            });
+        }
+    }
+    //console.log(res);
+    return res;
+    };
+    var chart = echarts.init(document.getElementById('main'));
+            
             $.getJSON('data/alcohol.json', function (data) {
 
                 var regionData = data.map(function (item) {
@@ -26,12 +68,6 @@
                 })
 
                 chart.setOption({
-                    //toolbox: {
-                        // feature: {
-                        //     saveAsImage: {}
-                        // }
-                    //},
-                    // backgroundColor: '#cdcfd5',
                      
                     visualMap: {
                         min: 0,
@@ -50,14 +86,14 @@
                         //     roughness: 0.2,
                         //     metalness: 0
                         // },
-                        // postEffect: {
-                        //     enable: true,
-                        //     SSAO: {
-                        //         enable: true,
-                        //         radius: 2,
-                        //         intensity: 1
-                        //     }
-                        // },
+                        postEffect: {
+                            enable: true,
+                            SSAO: {
+                                enable: true,
+                                radius: 2,
+                                intensity: 1
+                            }
+                        },
                         // groundPlane: {
                         //     show: true
                         // },
@@ -91,7 +127,7 @@
 
                         label: {
                               //backgroundColor: '#fff', 
-                             //show: true,                             
+                            //show: true,                             
                             textStyle: {
                                 color: '#ff0',
                                 borderColor: '#000'

@@ -24,6 +24,7 @@
         function randomData() {
         return Math.round(Math.random()*200);
 }
+
 var geoCoordMap = {
     "贵阳市":[106.6992,26.7682],
     "安顺市":[105.9082,25.9882],
@@ -33,11 +34,99 @@ var geoCoordMap = {
     "黔南布依族苗族自治州":[107.2485,25.8398],
     "毕节地区":[105.1611,27.0648],
     "黔东南苗族侗族自治州":[108.4241,26.4166],
-    "遵义市":[106.908,28.1744], 
+    "遵义市":[106.908,28.1744],
+
+    //贵阳
+    "开阳县":[106.97,27.07],
+    "息烽县":[106.73,27.1],
+    "修文县":[106.58,26.83],
+    "清镇市":[106.47,26.55],
+    //六盘水市
+//    "钟山区":[104.83,26.6],
+    "六枝特区":[104.83,26.6],
+    "水城县":[105.48,26.22],
+    "盘县":[104.47,25.72],
+    //遵义市
+    "遵义县":[106.83,27.53],
+    "桐梓县":[106.82,28.13],
+    "绥阳县":[107.18,27.95],
+    "正安县":[107.43,28.55],
+    "道真仡佬族苗族自治县":[107.6,28.88],
+    "务川仡佬族苗族自治县":[107.88,28.53],
+    "凤冈县":[107.72,27.97], 
+    "湄潭县":[107.48,27.77], 
+    "余庆县":[107.88,27.22], 
+    "习水县":[106.22,28.32], 
+    "赤水市":[105.7,28.58], 
+    "仁怀市":[106.42,27.82], 
+    //安顺市
+    "平坝县":[106.25,26.42], 
+    "普定县":[105.75,26.32], 
+    "镇宁布依族苗族自治县":[105.77,26.07], 
+    "关岭布依族苗族自治县":[105.62,25.95], 
+    "紫云苗族布依族自治县":[106.08,25.75], 
+    //铜仁地区
+    "江口县":[108.85,27.7], 
+    "玉屏侗族自治县":[108.92,27.23],   
+    "石阡县":[108.23,27.52], 
+    "思南县":[108.25,27.93],  
+    "印江土家族苗族自治县":[108.4,28.0], 
+    "德江县":[108.12,28.27],  
+    "沿河土家族自治县":[108.5,28.57], 
+    "松桃苗族自治县":[109.2,28.17],  
+    "万山特区":[109.2,27.52], 
+     //兴义市
+    "兴仁县":[105.18,25.43], 
+    "普安县":[104.95,25.78], 
+    "晴隆县":[105.22,25.83],   
+    "贞丰县":[105.65,25.38], 
+    "望谟县":[106.1,25.17],   
+    "册亨县":[105.82,24.98], 
+    "安龙县":[105.47,25.12], 
+    //毕节地区
+    "大方县":[105.6,27.15], 
+    "黔西县":[106.03,27.03],
+    "金沙县":[106.22,27.47], 
+    "织金县":[105.77,26.67],
+    "纳雍县":[105.38,26.78], 
+    "赫章县":[104.72,27.13],
+    //黔东南
+    "凯里市":[107.97,26.58], 
+    "黄平县":[107.9,26.9],
+    "施秉县":[108.12,27.03], 
+    "三穗县":[108.68,26.97],
+    "镇远县":[108.42,27.05], 
+    "岑巩县":[108.82,27.18],
+    "天柱县":[109.2,26.92], 
+    "锦屏县":[109.2,26.68],
+    "剑河县":[108.45,26.73], 
+    "台江县":[108.32,26.67],
+    "黎平县":[109.13,26.23], 
+    "榕江县":[108.52,25.93],
+    "从江县":[108.9,25.75],
+    "雷山县":[108.07,26.38],
+    "麻江县":[107.58,26.5], 
+    "丹寨县":[107.8,26.2]
+
+// 贵州省 黔南布依族苗族自治州 黔南布依族苗族自治州 107.52 26.27 
+// 贵州省 黔南布依族苗族自治州 都匀市 107.52 26.27 
+// 贵州省 黔南布依族苗族自治州 福泉市 107.5 26.7 
+// 贵州省 黔南布依族苗族自治州 荔波县 107.88 25.42 
+// 贵州省 黔南布依族苗族自治州 贵定县 107.23 26.58 
+// 贵州省 黔南布依族苗族自治州 瓮安县 107.47 27.07 
+// 贵州省 黔南布依族苗族自治州 独山县 107.53 25.83  
+
+
+// 贵州省 黔南布依族苗族自治州 平塘县 107.32 25.83 
+// 贵州省 黔南布依族苗族自治州 罗甸县 106.75 25.43 
+// 贵州省 黔南布依族苗族自治州 长顺县 106.45 26.03 
+// 贵州省 黔南布依族苗族自治州 龙里县 106.97 26.45 
+// 贵州省 黔南布依族苗族自治州 惠水县 106.65 26.13  
+// 贵州省 黔南布依族苗族自治州 三都水族自治县 107.87 25.98  
 
 };
 
-var City_data=[
+var City_data_orgin=[
     //{name: "贵阳市",value:50},
     {name: "贵阳市"},
     {name: "安顺市"},
@@ -47,12 +136,16 @@ var City_data=[
     {name:'黔西南布依族苗族自治州'},
     {name:'黔南布依族苗族自治州'},
     {name:'铜仁地区'},
-    {name:'黔东南苗族侗族自治州'}
-] 
-
+    {name:'黔东南苗族侗族自治州'},{name:'丹寨县'}
+];
+        var City_data=[];
+         for (var key in geoCoordMap) { 
+            City_data.push({
+                name: key
+            });
+         } 
  
-    var convertData = function (data) {
-       
+    var convertData = function (data) { 
     var res = [];
     for (var i = 0; i < data.length; i++) {
         var geoCoord = geoCoordMap[data[i].name];
@@ -60,40 +153,52 @@ var City_data=[
             res.push({
                 name: data[i].name,
                 //value: geoCoord.concat(data[i].value)
-                 value:data[i].value?geoCoord.concat(data[i].value):geoCoord.concat(randomData())
+                value:data[i].value?geoCoord.concat(data[i].value):geoCoord.concat(randomData())
             });
         }
-    }
-    //console.log(res);
+    } 
     return res;
     };
 myChart.setOption({
-    backgroundColor: '#404a59',
+    backgroundColor: {
+    
+    type: 'radial',
+    x: 0.5,
+    y: 0.5,
+    r: 0.5,
+    colorStops: [{
+        offset: 0, color: '#00b8ee' // 0% 处的颜色
+    }, {
+        offset: 1, color: '#006dba' // 100% 处的颜色
+    }],
+    globalCoord: false // 缺省为 false
+ },
     roam:true,
     title: {
-        text: '贵州地图',
+        text: 'map',
         subtext: '二级标题', 
         x:'center',
         textStyle: {
-            color: '#fff'
+            color: '#000'
         }
     },
     tooltip: {
         trigger: 'item',
         formatter: function (params) {
-            return params.name + ' : ' + params.value[2];
+            return params.name + '数据为 : ' + params.value[2];
         }
     },
-    legend: {
-        orient: 'vertical',
-        y: 'bottom',
-        x:'right',
-        data:['citylist'],
-        textStyle: {
-            color: '#fff'
-        }
-    },
+    // legend: {
+    //     orient: 'vertical',
+    //     y: 'bottom',
+    //     x:'right',
+    //     data:['citylist'],
+    //     textStyle: {
+    //         color: '#fff'
+    //     }
+    // },
     visualMap: {
+        show:false,
         min: 0,
         max: 200,
         calculable: true,
@@ -107,93 +212,173 @@ myChart.setOption({
     geo: {
         map: '贵州',
         show:true,
-        // label: {
-        //      normal: {
-        //         show:true,
-        //         textStyle: {
-        //             color: '#fff'
-        //         }
-        //      },
-        //      emphasis: {
-        //         show: true,
-        //         textStyle: {
-        //             color: '#fff'
-        //         }
-        //      }
-        // },
+        scaleLimit: {
+            min: 1.6,
+            max: 2.5
+        },
          label: {
                 normal: {
-                    position: 'right',
-                    show: true
+                    //position: 'right',
+                     show: false
+//                    textStyle: {
+//                        color:'#000',
+//                        fontSize: 8
+//                    }
                 },
                 emphasis: {
-
-                    show: true,
-                    textStyle:{
-                        color:'#fff'
-                    }
+                     show: false
+                    // textStyle:{
+                    //     color:'#fff'
+                    // }
                 }
             },
         itemStyle: {
             normal: {
                 areaColor: '#323c48',
-                borderColor: '#111'
+                borderColor: '#6a96ce',
+                shadowOffsetX: 0,
+                shadowOffsetY: 0,
+                shadowBlur: 20,
+                borderWidth: 1,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
             },
             emphasis: {
-                areaColor: '#2a333d'
-            }
+                areaColor: '#eee'
+
+            }  
         },
-        regions: [{
+        regions: [
+            {
              name: '贵阳市',
              itemStyle: {
-            normal: {
-                areaColor: 'purple',
-                color: '#fff'
-                   }
-    }
-}]
+             normal: { areaColor: '#f9d3e3'}
+             }
+            },
+             {
+             name: '安顺市',
+             itemStyle: {
+             normal: { areaColor: '#d7e8ba'}
+             }
+             },
+             {
+             name: '六盘水市',
+             itemStyle: {
+             normal: { areaColor: '#bbd5ef'}
+             }
+             },
+             {
+             name: '遵义市',
+             itemStyle: {
+             normal: { areaColor: '#d7e8ba'}
+             }
+             },
+             {
+             name: '毕节市',
+             itemStyle: {
+             normal: { areaColor: '#fff2ad'}
+             }
+             },
+             {
+             name: '黔西南布依族苗族自治州',
+             itemStyle: {
+             normal: { areaColor: '#f9d3e3'}
+             }
+             },
+             {
+             name: '铜仁市',
+             itemStyle: {
+             normal: { areaColor: '#f9d3e3'}
+             }
+             },
+            {
+             name: '黔东南苗族侗族自治州',
+             itemStyle: {
+             normal: { areaColor: '#bbd5ef'}
+             }},
+            {
+                name: '黔南布依族苗族自治州',
+                itemStyle: {
+                    normal: {areaColor: '#fce5e4'}
+                }
+            }
+        ]
     },
-    series: [{
-        //      name: 'pm2.5',
-        //     type: 'scatter',
-        //     coordinateSystem: 'geo',
-        //     data: convertData( ), 
-        //     symbolSize: 12, 
-        //     itemStyle: {
-        //         emphasis: {
-        //             borderColor: '#fff',
-        //             borderWidth: 1
-        //         }
-        //     }
-        
+    series: [
+        {
+            name: 'xian',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            data:convertData(City_data).slice(9),
+            symbolSize: 5,
+            itemStyle: {
+                emphasis: {
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }
+            },
+            label: {
+                normal: {
+                    formatter: '{b}',
+                    position: 'right',
+                    show: true,
+                        textStyle: {
+                            color:'#333',
+                            fontSize: 6
+                        }
+
+
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        color: '#000'
+                    }
+                }
+            }
+        },
+        {
             name: 'citylist',
             type: 'effectScatter',
             coordinateSystem: 'geo',
-            data: convertData(City_data),
-            // symbolSize: function (val) {
-            //     return val[2] / 10;
-            // },
-            showEffectOn: 'emphasis',
+            data: convertData(City_data).slice(0,9),
+            symbolSize: 15,
+//            symbolSize: function (val) {
+//                 return val[2] / 10;
+//            },
+            showEffectOn: 'render',//showEffectOn: 'emphasis',            
+            hoverAnimation: true,            
             rippleEffect: {
+                period: 8,
+                scale: 5.5,
                 brushType: 'stroke'
-            },
-            hoverAnimation: true,
+                }, 
             label: {
                 normal: {
-                     formatter: '{b}',
-                    position: 'right',
-                    show: true
-                }
+                    formatter: '{b}',
+                    position: 'top',
+                    show: true,
+                    textStyle: {
+                        fontSize:15
+                    }
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                    //color: '#000'
+                        fontSize:18
+                    }  
+            }  
             },
             itemStyle: {
                 normal: {
-                    color: '#f4e925',
-                    shadowBlur: 10,
-                    shadowColor: '#333'
+                    // color: '#f4e925',
+                    // shadowBlur: 10,
+                    // shadowColor: '#333',
+                    // shadowOffsetY:20,
+                    // shadowOffsetX:10
                 }
             },
-            zlevel: 1
-    
+            zlevel: 10
 
       }]
 });
