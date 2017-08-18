@@ -10,12 +10,29 @@
     <script src="echarts.js"></script>
     <script src="echarts-gl.js"></script>
     <script src="guizhou.js"></script>
-
-    <!-- <script src=" http://echarts.baidu.com/resource/echarts-gl-latest/dist/echarts-gl.min.js"></script> -->
+ 
+    <STYLE>
+    .total{
+        position: absolute;left: 5%;top: 20%;
+    }
+    .total p{
+        color: #fff;
+        font-size: 16px;  
+        margin: 40px 0;
+       
+    }
+    .total p span{
+        background: rgba(0,0,0,.3);
+        border-radius: 20px;
+            padding: 11px 15px;
+        margin-right: 5px;
+    }
+    </STYLE>
    
 </head>
 <body>
-	<div id="main" style="width:100%;height:600px;"></div>
+	<div id="main" style="width:100%;height:700px;"></div> 
+    <div id="total" class="total"></div>
  
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
@@ -24,6 +41,29 @@
         function randomData() {
         return Math.round(Math.random()*200);
 }
+var barData=[],categoryData=[];
+
+
+var totalData=[
+    {name:"今日预购商品量",count:95464},
+    {name:"今日直供商品量",count:54},
+    {name:"今日预定销售量",count:953},
+    {name:"电商平台客户量",count:241}
+    ];
+
+    var total_pic='<p><span>name :</span>value</p>';
+    var total_str='';
+    for(var i=0;i<totalData.length;i++) { 
+        var str=total_pic;
+         str=str.replace(/name/g,totalData[i].name);
+         str=str.replace(/value/g,totalData[i].count); 
+          total_str=total_str+str; 
+         // barData.push('0'); 
+         // categoryData.push(totalData[i].name); 
+    }  
+    document.getElementById('total').innerHTML=total_str;
+     
+ 
 
 var geoCoordMap = {
     "贵阳市":[106.6992,26.7682],
@@ -106,24 +146,21 @@ var geoCoordMap = {
     "从江县":[108.9,25.75],
     "雷山县":[108.07,26.38],
     "麻江县":[107.58,26.5], 
-    "丹寨县":[107.8,26.2]
+    "丹寨县":[107.8,26.2],
 
-// 贵州省 黔南布依族苗族自治州 黔南布依族苗族自治州 107.52 26.27 
-// 贵州省 黔南布依族苗族自治州 都匀市 107.52 26.27 
-// 贵州省 黔南布依族苗族自治州 福泉市 107.5 26.7 
-// 贵州省 黔南布依族苗族自治州 荔波县 107.88 25.42 
-// 贵州省 黔南布依族苗族自治州 贵定县 107.23 26.58 
-// 贵州省 黔南布依族苗族自治州 瓮安县 107.47 27.07 
-// 贵州省 黔南布依族苗族自治州 独山县 107.53 25.83  
-
-
-// 贵州省 黔南布依族苗族自治州 平塘县 107.32 25.83 
-// 贵州省 黔南布依族苗族自治州 罗甸县 106.75 25.43 
-// 贵州省 黔南布依族苗族自治州 长顺县 106.45 26.03 
-// 贵州省 黔南布依族苗族自治州 龙里县 106.97 26.45 
-// 贵州省 黔南布依族苗族自治州 惠水县 106.65 26.13  
-// 贵州省 黔南布依族苗族自治州 三都水族自治县 107.87 25.98  
-
+// 黔南布依族苗族自治州
+    "都匀市":[107.52,26.27],
+    "福泉市":[107.5,26.7],
+    "荔波县":[107.88,25.42],
+    "贵定县":[107.23,26.58],
+    "瓮安县":[107.47,27.07],
+    "独山县":[107.53,25.83],
+    "平塘县":[107.32,25.83],
+    "罗甸县":[106.75,25.43],
+    "长顺县":[106.45,26.03],
+    "龙里县":[106.97,26.45],
+    "惠水县":[106.65,26.13],
+    "三都水族自治县":[107.87,25.98]  
 };
 
 var City_data_orgin=[
@@ -136,7 +173,7 @@ var City_data_orgin=[
     {name:'黔西南布依族苗族自治州'},
     {name:'黔南布依族苗族自治州'},
     {name:'铜仁地区'},
-    {name:'黔东南苗族侗族自治州'},{name:'丹寨县'}
+    {name:'黔东南苗族侗族自治州'} 
 ];
         var City_data=[];
          for (var key in geoCoordMap) { 
@@ -174,20 +211,64 @@ myChart.setOption({
     globalCoord: false // 缺省为 false
  },
     roam:true,
-    title: {
-        text: 'map',
-        subtext: '二级标题', 
-        x:'center',
+    animation: true,
+    animationDuration: 1000,
+    animationEasing: 'cubicInOut',
+    animationDurationUpdate: 1000,
+    animationEasingUpdate: 'cubicInOut',
+    title: [{
+        text: '统计数据', 
+        x: '10%',
+        y:'15%',
+        textAlign: 'center',
+         textStyle: {
+            fontSize: 16,
+            color: '#FFF'
+        } 
+    },{
+         text: ' ',
+        //subtext: '二级标题', 
+        x: '55%',
+        textAlign: 'center',
         textStyle: {
             color: '#000'
         }
-    },
+    }],
     tooltip: {
         trigger: 'item',
         formatter: function (params) {
             return params.name + '数据为 : ' + params.value[2];
         }
     },
+    //  grid: {
+    //     //left:20,
+    //     //right: 40,
+    //     top: 100,
+    //     //bottom: 40,
+    //     width: '20%',
+    //     height:"40%"
+    // },
+    // xAxis: {
+    //     type: 'value',
+    //     //scale: true,
+    //     position: 'top',
+    //     boundaryGap: false,
+    //     splitLine: {show: false},
+    //     axisLine: {show: false},
+    //     axisTick: {show: false},
+    //     //axisLabel: {margin: 2, textStyle: {color: '#aaa'}},
+    //      axisLabel: {show: false},
+    //      silent:true 
+    // },
+    // yAxis: {
+    //     type: 'category',
+    //     //name: 'TOP 20',
+    //     nameGap: 16,
+    //     axisLine: {show: false, lineStyle: {color: '#ddd'}},
+    //     axisTick: {show: false, lineStyle: {color: '#ddd'}},
+    //     axisLabel: {interval: 0, textStyle: {color: '#ddd'}},
+    //     data: categoryData
+    // },
     // legend: {
     //     orient: 'vertical',
     //     y: 'bottom',
@@ -213,9 +294,10 @@ myChart.setOption({
         map: '贵州',
         show:true,
         scaleLimit: {
-            min: 1.6,
+            min: 1.2,
             max: 2.5
         },
+        left:"35%",
          label: {
                 normal: {
                     //position: 'right',
@@ -378,10 +460,31 @@ myChart.setOption({
                     // shadowOffsetX:10
                 }
             },
-            zlevel: 10
-
-      }]
-});
+            zlevel: 10 
+        // },
+        // {
+        //     id: 'bar',
+        //     zlevel: 2,
+        //     type: 'bar',
+        //     symbol: 'none',
+        //     itemStyle: {
+        //         normal: {
+        //             color: '#ff0'
+        //         }
+        //     },
+        //     data: barData,
+        //     label:{
+        //         normal:{
+        //             show:true,
+        //             position:'insideLeft',
+        //             formatter: function(params){
+        //                 var count=totalData[params.dataIndex].count;
+        //                  return count;
+        //             }
+        //         } 
+        //     },silent:true
+        }]
+}); 
     </script>
  	
 </body>
