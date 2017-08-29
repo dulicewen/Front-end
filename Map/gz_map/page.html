@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title></title> 
+    <script src="echarts.js"></script> 
+    <script src="guizhou.js"></script> 
+    <script src="config.js"></script> 
+    <STYLE>
+    .total{
+        position: absolute;left: 5%;top: 20%;
+    }
+    .total p{
+           color: #fff;
+    font-size: 21px;
+    margin: 40px 0;
+    padding: 0 15px;
+       
+    }
+    .total p span{
+        background: rgba(0, 255, 57, 0.3);
+    -border: 2px solid #ffffff;
+    border-radius: 20px;
+    padding: 11px 15px;
+    margin-right: 5px;
+    }
+    </STYLE>
+   
+</head>
+<body>
+	<div id="main" style="width:100%;height:700px;"></div> 
+    <div id="total" class="total"></div>
+ 
+    <script type="text/javascript"> 
+        var myChart = echarts.init(document.getElementById('main')); 
+        function randomData() {
+        return Math.round(Math.random()*200);
+        }
+var barData=[],categoryData=[];  
+    var total_pic='<p><span>name :</span>value</p>';
+    var total_str='';
+    for(var i=0;i<totalData.length;i++) { 
+        var str=total_pic;
+         str=str.replace(/name/g,totalData[i].name);
+         str=str.replace(/value/g,totalData[i].count); 
+          total_str=total_str+str;  
+    }  
+    document.getElementById('total').innerHTML=total_str;  
+ 
+        var City_data=[];
+         for (var key in geoCoordMap) { 
+            City_data.push({
+                name: key
+            });
+         }  
+
+    var convertData = function (data) { 
+    var res = [];
+    var fixxian=0;
+    for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+            if(fix_xian[data[i].name]) {
+                fixxian=1;} 
+            res.push({
+                name: data[i].name,
+                //value: geoCoord.concat(data[i].value)
+                value:data[i].value?geoCoord.concat(data[i].value):geoCoord.concat(randomData()),
+                label:fix_xian[data[i].name]
+            });
+        }
+    } 
+    return res;
+    };
+myChart.setOption({
+
+    backgroundColor: { 
+    type: 'radial',
+    x: 0.5,
+    y: 0.5,
+    r: 0.8,
+    colorStops: [{
+        offset: 0, color:'#fff'// '#00b8ee' // 0% 处的颜色
+    }, {
+        offset: 1, color:'rgba(128, 128, 128, 0.5)' //'#00a87b'//'#006dba' // 100% 处的颜色
+    }],
+    globalCoord: false  
+ },
+    roam:true,
+    animation: true,
+    animationDuration: 1000,
+    animationEasing: 'cubicInOut',
+    animationDurationUpdate: 1000,
+    animationEasingUpdate: 'cubicInOut',
+    title: [{
+        text: '统计数据', 
+        x: '10%',
+        y:'15%',
+        textAlign: 'center',
+         textStyle: {
+            fontSize: 20,
+            color: '#FFF'
+        } 
+    }],
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.name + '数据为 : ' + params.value[2];
+        }
+    }, 
+    visualMap: {
+        show:false,
+        min: 0,
+        max: 200,
+        calculable: true,
+        inRange: {
+            color: ['#50a3ba', '#eac736', '#d94e5d']
+        },
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    geo: {
+        map: '贵州',
+        show:true,
+        scaleLimit: {
+            min: 1.2,
+            max: 2.5
+        },
+        left:"35%",
+         label: {
+                normal: { 
+                     show: false 
+                },
+                emphasis: {
+                     show: false 
+                }
+            },
+        itemStyle: {
+            normal: {
+                areaColor: '#323c48',
+                borderColor: '#6a96ce',
+                shadowOffsetX: 0,
+                shadowOffsetY: 0,
+                shadowBlur: 20,
+                borderWidth: 1,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            },
+            emphasis: {
+                areaColor: '#eee'
+
+            }  
+        },
+        regions: sp_region 
+    },
+    series: [
+        {
+            name: 'xian',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            data:convertData(City_data).slice(9),
+            symbolSize: 10,
+            itemStyle: {
+                emphasis: {
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }
+            },
+            //silent:true,
+            label: {
+                normal: {
+                    formatter: '{b}',
+                    position: 'bottom',
+                    show: true,
+                        textStyle: {
+                            color:'#333',
+                            fontSize: 6
+                        } 
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        color: '#000'
+                    }
+                }
+            }
+        },
+        {
+            name: 'citylist',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            data: convertData(City_data).slice(0,9),
+            symbolSize: 15, 
+            showEffectOn: 'render',           
+            hoverAnimation: true,            
+            rippleEffect: {
+                period: 8,
+                scale: 5.5,
+                brushType: 'stroke'
+                }, 
+            label: {
+                normal: {
+                    formatter: '{b}',
+                    position: 'top',
+                    show: true,
+                    textStyle: {
+                        fontSize:15
+                    }
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: { 
+                        fontSize:18
+                    }  
+            }  
+            },
+            zlevel: 10  
+        }]
+});  
+    </script>
+ 	
+</body>
+</html>

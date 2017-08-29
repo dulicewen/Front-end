@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title> </title>
+
+    <link rel="stylesheet" href=""/>
+    <style type="text/css">
+	 .bg_red{ 	background: #f00;	 }
+	 .red{color: #f02}
+	 .green{color:green;}
+    </style>
+</head>
+<!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+<script src="vue.js"></script>
+<body>
+<div style="height:50px"></div>
+<div id="app">
+<input type="text" v-model='input' class="bg_red" v-bind:class='[]'>
+   {{input}}
+   <p> {{ msg }}</p>
+   
+</div>
+<div id="app2" v-if='show'>
+  <span v-bind:title="themeg2">
+    动态！
+  </span>
+</div>
+<div id="app3" v-if='show'>
+  <span v-if="msg3">
+    绑定！
+  </span>
+</div>
+ <div id="app4">
+     <ul v-if='show_app4'>
+         <li v-for="todo in todos">
+             {{  todo.text }}
+         </li>
+     </ul>
+     <div>
+     	{{ msg |capitalize |reverse}}
+     	{{title}}
+     </div>
+ </div>
+
+<!--框架调用-->
+<script src="main.js"></script>
+<!--路由调用-->
+<script src=" "></script>
+</body>
+</html>
